@@ -18,3 +18,7 @@ local.properties
 app/.classpath
 app/.project
 app/.settings/org.eclipse.buildship.core.prefs
+.idea/gradle.xml
+.idea/misc.xml
+.idea/gradle.xml
+.idea/misc.xml
