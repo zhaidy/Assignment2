@@ -10,10 +10,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Test
-        //Test2
-        //Test3
-        //Test Test Mic check 1 2
-        //Test Gradle
     }
 }
