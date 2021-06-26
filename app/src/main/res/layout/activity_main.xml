@@ -7,4 +7,14 @@
     tools:context=".MainActivity">
 
 
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="239dp"
+        android:layout_height="95dp"
+        android:text="@string/app_title"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="6dp" />
+    
 </androidx.constraintlayout.widget.ConstraintLayout>
