@@ -32,7 +32,7 @@ public class GenerateQRCode extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.editText);
     }
 
-    public void onClick(View view) {
+    public void btnGenerate_OnClick(View view) {
         if(!editText.getText().toString().isEmpty()){
             EditTextValue = editText.getText().toString();
 
