@@ -26,18 +26,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="56dp"
-        android:onClick="btnGenerate"
+        android:onClick="btnGenerate_OnClick"
         android:text="Generate QR"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/btnScanQRCode"
+        app:layout_constraintStart_toStartOf="@+id/btnScanQRCode"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnScanQRCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="113dp"
         android:layout_marginBottom="70dp"
+        android:onClick="btnScanQRCode_OnClick"
         android:text="Scan QR Code"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +51,7 @@
         android:layout_marginBottom="223dp"
         android:text="View History"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintStart_toStartOf="@+id/btnScanQRCode"
+        app:layout_constraintTop_toBottomOf="@+id/btnScanQRCode" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,8 +17,13 @@ public class MainActivity extends AppCompatActivity {
         //testing 1 2 3
     }
 
-    public void btnGenerate(View view){
+    public void btnGenerate_OnClick(View view){
         Intent i = new Intent(this, GenerateQRCode.class);
+        startActivity(i);
+    }
+
+    public void btnScanQRCode_OnClick(View view){
+        Intent i = new Intent(this, ScanQRCode.class);
         startActivity(i);
     }
 }

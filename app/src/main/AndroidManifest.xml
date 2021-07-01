@@ -20,6 +20,10 @@
             android:name=".GenerateQRCode"
             android:label="Generate QR Code" >
         </activity>
+        <activity
+            android:name=".ScanQRCode"
+            android:label="Scan QR Code" >
+        </activity>
     </application>
 
 </manifest>
