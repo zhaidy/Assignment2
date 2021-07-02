@@ -26,4 +26,9 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, ScanQRCode.class);
         startActivity(i);
     }
+
+    public void btnHistoryQRCode_OnClick(View view){
+        Intent i = new Intent(this, HistoryQR.class);
+        startActivity(i);
+    }
 }
