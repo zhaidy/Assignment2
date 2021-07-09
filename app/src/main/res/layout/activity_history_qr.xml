@@ -17,8 +17,8 @@
         tools:layout_editor_absoluteY="16dp" />
 
     <ListView
-        android:layout_width="409dp"
-        android:layout_height="657dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="72dp" />
+        android:layout_width="376dp"
+        android:layout_height="624dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="73dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

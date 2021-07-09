@@ -1,5 +1,6 @@
 package com.example.assignment2;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,8 +16,8 @@ public class DataManager {
        inside and outside this class
     */
     public static final String TABLE_ROW_ID = "_id";
-    public static final String TABLE_ROW_QRCODE = "code";
-    public static final String TABLE_ROW_TYPE = "type";
+    public static final String TABLE_ROW_SCANNEDQRCODE = "code";
+    //public static final String TABLE_ROW_TYPE = "type";
 
     /*
         Next we have a private static final strings for
@@ -45,9 +46,9 @@ public class DataManager {
             // Create a table for photos and all their details
             String newTableQueryString = "create table " + QR_Table + " ("
                     + TABLE_ROW_ID
-                    + " integer primary key autoincrement not null," + TABLE_ROW_QRCODE
-                    + " text not null,"
-                    + TABLE_ROW_TYPE
+                    + " integer primary key autoincrement not null," + TABLE_ROW_SCANNEDQRCODE
+                    /*+ " text not null,"
+                    + TABLE_ROW_TYPE*/
                     + " text not null);";
             db.execSQL(newTableQueryString);
         }
@@ -57,6 +58,12 @@ public class DataManager {
         public void onUpgrade(SQLiteDatabase db,
                               int oldVersion, int newVersion) {
         }
+    }
+
+    public void insertHistory(String code){
+        String query = "INSERT INTO " + QR_Table + " (" + TABLE_ROW_SCANNEDQRCODE + ") " + "VALUES (" + "'" + code + "'" + ");";
+        Log.i("insert() + ", query);
+        db.execSQL(query);
     }
 
 }

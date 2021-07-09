@@ -19,10 +19,15 @@ public class ScanQRCode extends AppCompatActivity {
     TextView tv_qr_readTxt;
     Button btnScan;
 
+    // This is our DataManager instance
+    private DataManager dm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scan_qr_code);
+
+        dm = new DataManager(this);
 
         btnScan = (Button)findViewById(R.id.btnScan);
         tv_qr_readTxt = (TextView) findViewById(R.id.textView);
@@ -50,6 +55,7 @@ public class ScanQRCode extends AppCompatActivity {
                 Log.e("Scan", "Scanned");
 
                 tv_qr_readTxt.setText(result.getContents());
+                dm.insertHistory(tv_qr_readTxt.getText().toString());
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
             }
         } else {
