@@ -66,4 +66,10 @@ public class DataManager {
         db.execSQL(query);
     }
 
+    public Cursor getHistory(){
+        String query = "SELECT " + "(" + TABLE_ROW_SCANNEDQRCODE + ") " + "FROM " + QR_Table + ";";
+        Cursor c = db.rawQuery(query, null);
+        return c;
+    }
+
 }
