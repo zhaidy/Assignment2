@@ -55,7 +55,7 @@ public class ScanQRCode extends AppCompatActivity {
                 Log.e("Scan", "Scanned");
 
                 tv_qr_readTxt.setText(result.getContents());
-                dm.insertHistory(tv_qr_readTxt.getText().toString());
+                dm.insertHistory("scan", tv_qr_readTxt.getText().toString(), null);
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
             }
         } else {
