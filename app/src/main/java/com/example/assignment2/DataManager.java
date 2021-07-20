@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
@@ -56,7 +57,7 @@ public class DataManager{
                             TABLE_ROW_ID + " integer primary key autoincrement not null, " +
                             TABLE_ROW_SCANNEDQRCODE   + " text, " +
                             TABLE_ROW_TYPE  + " text, " +
-                            TABLE_ROW_IMAGE  + " text, " +
+                            TABLE_ROW_IMAGE  + " blob, " +
                             TABLE_ROW_DATE + " date " + ")"
             );
         }
@@ -85,7 +86,7 @@ public class DataManager{
             contentValues.put(TABLE_ROW_SCANNEDQRCODE, code);
         }
         if(img != null) {
-            byte[] data = getBitmapAsByteArray(img);
+            byte[] data = getBytes(img);
             contentValues.put(TABLE_ROW_IMAGE, data);
         }
 
@@ -104,9 +105,9 @@ public class DataManager{
         return c;
     }
 
-    public static byte[] getBitmapAsByteArray(Bitmap bitmap) {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
-        return outputStream.toByteArray();
+    public static byte[] getBytes(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+        return stream.toByteArray();
     }
 }

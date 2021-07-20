@@ -22,6 +22,7 @@ public class GenerateQRCode extends AppCompatActivity {
     ImageView imageView;
     String EditTextValue ;
     Bitmap bitmap ;
+    DataManager dm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,8 @@ public class GenerateQRCode extends AppCompatActivity {
 
         imageView = (ImageView) findViewById(R.id.imageView);
         editText = (EditText) findViewById(R.id.editText);
+
+        dm = new DataManager(this);
     }
 
     public void btnGenerate_OnClick(View view) {
@@ -41,6 +44,7 @@ public class GenerateQRCode extends AppCompatActivity {
 
                 imageView.setImageBitmap(bitmap);
 
+                dm.insertHistory("generate", EditTextValue, bitmap);
             } catch (WriterException e) {
                 e.printStackTrace();
             }
@@ -50,7 +54,7 @@ public class GenerateQRCode extends AppCompatActivity {
             Toast.makeText(this, "Please Enter Your Scanned Test" , Toast.LENGTH_LONG).show();
         }
     }
-    Bitmap TextToImageEncode(String Value) throws WriterException {
+    public Bitmap TextToImageEncode(String Value) throws WriterException {
         BitMatrix bitMatrix;
         try {
             bitMatrix = new MultiFormatWriter().encode(
@@ -82,6 +86,7 @@ public class GenerateQRCode extends AppCompatActivity {
         Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
 
         bitmap.setPixels(pixels, 0, 350, 0, 0, bitMatrixWidth, bitMatrixHeight);
+
         return bitmap;
     }
 }
