@@ -1,6 +1,14 @@
 package com.example.assignment2;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+
+import androidx.core.content.ContextCompat;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
 
 public class HistoryModel {
     private String id;
@@ -17,7 +25,7 @@ public class HistoryModel {
         return code;
     }
 
-    public Bitmap getImg() {
+    public Bitmap getImg(){
         return img;
     }
 

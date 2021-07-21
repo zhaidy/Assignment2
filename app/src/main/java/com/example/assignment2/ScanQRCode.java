@@ -12,14 +12,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 public class ScanQRCode extends AppCompatActivity {
+    public final static int QRcodeWidth = 350 ;
     TextView tv_qr_readTxt;
     Button btnScan;
+    Bitmap bitmap;
 
     // This is our DataManager instance
     private DataManager dm;
@@ -57,7 +63,13 @@ public class ScanQRCode extends AppCompatActivity {
                 Log.e("Scan", "Scanned");
 
                 tv_qr_readTxt.setText(result.getContents());
-                dm.insertHistory("scan", tv_qr_readTxt.getText().toString(), null);
+
+                try {
+                    bitmap = dm.TextToImageEncode(this, QRcodeWidth,tv_qr_readTxt.getText().toString());
+                } catch (WriterException e) {
+                    e.printStackTrace();
+                }
+                dm.insertHistory("scan", tv_qr_readTxt.getText().toString(), bitmap);
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
             }
         } else {
