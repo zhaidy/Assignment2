@@ -1,13 +1,18 @@
 package com.example.assignment2;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.google.zxing.BarcodeFormat;
@@ -22,6 +27,7 @@ public class GenerateQRCode extends AppCompatActivity {
     ImageView imageView;
     String EditTextValue ;
     Bitmap bitmap ;
+    Button btnSave;
     DataManager dm;
 
     @Override
@@ -31,6 +37,8 @@ public class GenerateQRCode extends AppCompatActivity {
 
         imageView = (ImageView) findViewById(R.id.imageView);
         editText = (EditText) findViewById(R.id.editText);
+        btnSave = (Button) findViewById(R.id.btnSave);
+        btnSave.setVisibility(View.INVISIBLE);
 
         dm = new DataManager(this);
     }
@@ -38,20 +46,37 @@ public class GenerateQRCode extends AppCompatActivity {
     public void btnGenerate_OnClick(View view) {
         if(!editText.getText().toString().isEmpty()){
             EditTextValue = editText.getText().toString();
-
             try {
                 bitmap = dm.TextToImageEncode(this, QRcodeWidth, EditTextValue);
-
                 imageView.setImageBitmap(bitmap);
-
                 dm.insertHistory("generate", EditTextValue, bitmap);
+                btnSave.setVisibility(View.VISIBLE);
             } catch (WriterException e) {
                 e.printStackTrace();
             }
         }
         else{
             editText.requestFocus();
-            Toast.makeText(this, "Please Enter Your Scanned Test" , Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please enter the text to generate" , Toast.LENGTH_LONG).show();
         }
     }
+
+    public void btnSave_OnClick(View view) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+                PackageManager.PERMISSION_GRANTED) {
+        }
+        else {
+            ActivityCompat.requestPermissions(this, new String[]
+                    { Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
+        }
+        String result = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, EditTextValue, EditTextValue);
+        if(result != "" && result != null) {
+            Toast.makeText(this, "Image has been saved to gallery successfully.", Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(this, "Failed to save image.", Toast.LENGTH_LONG).show();
+        }
+    }
+
+
 }

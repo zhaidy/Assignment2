@@ -19,9 +19,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <GridView
-        android:id="@+id/idGVcourses"
+        android:id="@+id/gvHistory"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="500dp"
         android:layout_marginTop="88dp"
         android:horizontalSpacing="6dp"
         android:numColumns="2"

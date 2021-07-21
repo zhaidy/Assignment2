@@ -2,6 +2,7 @@ package com.example.assignment2;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,11 +22,14 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import static com.example.assignment2.DataManager.setClipboard;
+
 public class ScanQRCode extends AppCompatActivity {
     public final static int QRcodeWidth = 350 ;
     TextView tv_qr_readTxt;
     Button btnScan;
     Bitmap bitmap;
+    ImageView imgScan;
 
     // This is our DataManager instance
     private DataManager dm;
@@ -38,6 +42,7 @@ public class ScanQRCode extends AppCompatActivity {
         dm = new DataManager(this);
 
         btnScan = (Button)findViewById(R.id.btnScan);
+        imgScan = (ImageView)findViewById(R.id.imgScan);
         tv_qr_readTxt = (TextView) findViewById(R.id.textView);
     }
 
@@ -69,12 +74,25 @@ public class ScanQRCode extends AppCompatActivity {
                 } catch (WriterException e) {
                     e.printStackTrace();
                 }
+                imgScan.setImageBitmap(bitmap);
                 dm.insertHistory("scan", tv_qr_readTxt.getText().toString(), bitmap);
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
             }
         } else {
             // This is important, otherwise the result will not be passed to the fragment
             super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    public void clickResult(View view){
+        String code = tv_qr_readTxt.getText().toString();
+        if (!code.startsWith("http://") && !code.startsWith("https://")) {
+            setClipboard(this, code);
+            Toast.makeText(this, code + " has been copied to clipboard", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(code));
+            startActivity(browserIntent);
         }
     }
 }

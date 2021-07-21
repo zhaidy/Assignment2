@@ -2,28 +2,35 @@ package com.example.assignment2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.ByteArrayInputStream;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
+
+import static com.example.assignment2.DataManager.getBitmapFromBytes;
+import static com.example.assignment2.DataManager.setClipboard;
 
 public class HistoryQR extends AppCompatActivity {
 
     private DataManager dm;
-    GridView coursesGV;
+    GridView gvHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_qr);
 
-        coursesGV = findViewById(R.id.idGVcourses);
+        gvHistory = findViewById(R.id.gvHistory);
 
         ArrayList<HistoryModel> historyModelArrayList = new ArrayList<HistoryModel>();
 
@@ -56,8 +63,7 @@ public class HistoryQR extends AppCompatActivity {
         }
 
         HistoryGVAdapter adapter = new HistoryGVAdapter(this, historyModelArrayList);
-        coursesGV.setAdapter(adapter);
-
+        gvHistory.setAdapter(adapter);
 
         //ListView list = findViewById(R.id.listHist);
         //GridView tblHist = findViewById(R.id.idGVcourses);
@@ -82,10 +88,16 @@ public class HistoryQR extends AppCompatActivity {
 //            }
 //        }
     }
-    public static Bitmap getBitmapFromBytes(byte[] bytes) {
-        if (bytes != null) {
-            return BitmapFactory.decodeByteArray(bytes, 0 ,bytes.length);
+
+    public void clickCode(View view){
+        String code = ((TextView)view.findViewById(R.id.txtCode)).getText().toString();
+        if (!code.startsWith("http://") && !code.startsWith("https://")) {
+            setClipboard(this, code);
+            Toast.makeText(this, code + " has been copied to clipboard", Toast.LENGTH_SHORT).show();
         }
-        return null;
+        else {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(code));
+            startActivity(browserIntent);
+        }
     }
 }
