@@ -9,6 +9,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -87,6 +89,24 @@ public class HistoryQR extends AppCompatActivity {
 //                //tblHist.setAdapter();
 //            }
 //        }
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Back Arrow
+    }
+
+    //To have a Back Arrow Function
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
     }
 
     public void clickCode(View view){

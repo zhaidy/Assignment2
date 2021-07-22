@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Assignment2">
+        android:theme="@style/Theme.ScanQRCodeTheme">
         <activity
             android:name=".HistoryQR"
             android:label="History" />

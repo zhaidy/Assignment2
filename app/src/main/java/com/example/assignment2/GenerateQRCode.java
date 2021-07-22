@@ -1,10 +1,13 @@
 package com.example.assignment2;
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,6 +44,24 @@ public class GenerateQRCode extends AppCompatActivity {
         btnSave.setVisibility(View.INVISIBLE);
 
         dm = new DataManager(this);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Back Arrow
+    }
+
+    //To have a Back Arrow Function
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
     }
 
     public void btnGenerate_OnClick(View view) {

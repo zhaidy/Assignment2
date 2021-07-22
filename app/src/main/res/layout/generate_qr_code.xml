@@ -38,7 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:onClick="btnGenerate_OnClick"
-        android:text="Generate" />
+        android:text="Generate"
+        android:textColor="@color/light_black" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -54,6 +55,7 @@
         android:layout_marginStart="90dp"
         android:layout_marginTop="10dp"
         android:onClick="btnSave_OnClick"
-        android:text="Save image to gallery" />
+        android:text="Save image to gallery"
+        android:textColor="@color/light_black" />
 
 </LinearLayout>
