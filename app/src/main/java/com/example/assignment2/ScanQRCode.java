@@ -9,18 +9,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -45,7 +40,7 @@ public class ScanQRCode extends AppCompatActivity {
 
         btnScan = (Button)findViewById(R.id.btnScan);
         imgScan = (ImageView)findViewById(R.id.imgScan);
-        tv_qr_readTxt = (TextView) findViewById(R.id.textView);
+        tv_qr_readTxt = (TextView) findViewById(R.id.txtScanResult);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Back Arrow
     }

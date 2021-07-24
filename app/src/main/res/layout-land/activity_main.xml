@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
-
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textViewTitle"
+        android:id="@+id/textViewTitle2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -24,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="80dp"
         android:onClick="btnGenerateQRCode_OnClick"
         android:text="Generate QR" />
 
@@ -33,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="180dp"
         android:onClick="btnScanQRCode_OnClick"
         android:text="Scan QR Code" />
 
@@ -42,8 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="280dp"
         android:onClick="btnHistoryQRCode_OnClick"
         android:text="View History" />
-
 </RelativeLayout>
